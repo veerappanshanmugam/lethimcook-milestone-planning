@@ -1,6 +1,6 @@
 """Recipe scaling utility."""
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class Ingredient(BaseModel):
@@ -8,16 +8,19 @@ class Ingredient(BaseModel):
     amount: float | None = None
     unit: str
     name: str
+    note: str | None = None
 
-    model_config = {"extra": "allow"}
+    model_config = ConfigDict(extra="allow")
 
 
 class Recipe(BaseModel):
     """A recipe with servings and ingredients."""
     servings: int = Field(gt=0)
     ingredients: list[Ingredient]
+    name: str | None = None
+    prep_time: str | None = None
 
-    model_config = {"extra": "allow"}
+    model_config = ConfigDict(extra="allow")
 
     @field_validator("servings")
     @classmethod

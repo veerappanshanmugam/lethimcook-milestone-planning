@@ -59,6 +59,7 @@ class TestRecipeScaling:
         scaled = scale_recipe(recipe, 3)
 
         assert scaled.servings == 3
+        assert scaled.ingredients[0].amount is not None
         assert abs(scaled.ingredients[0].amount - 2.25) < 0.01
 
     def test_preserve_ingredient_properties(self):
@@ -116,15 +117,17 @@ class TestRecipeScalingErrors:
 
     def test_missing_servings(self):
         with pytest.raises(ValidationError):
-            Recipe(
-                ingredients=[
-                    Ingredient(amount=2, unit="cups", name="flour"),
-                ]
+            Recipe.model_validate(
+                {
+                    "ingredients": [
+                        {"amount": 2, "unit": "cups", "name": "flour"},
+                    ]
+                }
             )
 
     def test_missing_ingredients(self):
         with pytest.raises(ValidationError):
-            Recipe(servings=4)
+            Recipe.model_validate({"servings": 4})
 
     def test_zero_servings(self):
         with pytest.raises(ValidationError):
