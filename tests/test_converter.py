@@ -1,7 +1,7 @@
 """Tests for core conversion functionality."""
 
 import pytest
-from measure import convert
+from lethimcook import convert
 
 
 class TestVolumeConversions:

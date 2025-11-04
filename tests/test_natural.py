@@ -1,7 +1,7 @@
 """Tests for natural language conversion."""
 
 import pytest
-from measure import convert_natural
+from lethimcook import convert_natural
 
 
 class TestNaturalLanguagePatterns:

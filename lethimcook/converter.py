@@ -1,6 +1,6 @@
 """Core unit conversion functionality."""
 
-from measure.units import (
+from lethimcook.units import (
     CONVERSIONS,
     UnitType,
     get_unit_type,

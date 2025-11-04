@@ -1,7 +1,7 @@
 """Natural language conversion utility using regex and string matching."""
 
 import re
-from measure.converter import convert
+from lethimcook.converter import convert
 
 
 def _format_number(value: float) -> str:

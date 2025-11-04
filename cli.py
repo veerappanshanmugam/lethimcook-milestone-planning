@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Command-line interface for the measure library."""
+"""Command-line interface for the lethimcook library."""
 
 import sys
 
-from measure import convert_natural
+from lethimcook import convert_natural
 
 
 def main():
     """Simple CLI for unit conversions."""
     if len(sys.argv) < 2:
-        print("Measure - Unit Conversion Library")
+        print("LetHimCook - Unit Conversion Library")
         print("\nUsage:")
         print("  python cli.py '2 cups to ml'")
         print("  python cli.py 'convert 1 pound to grams'")

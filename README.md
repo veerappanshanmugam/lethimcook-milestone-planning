@@ -1,4 +1,4 @@
-# Measure
+# LetHimCook
 
 A Python library for converting between units of measurement, particularly focused on cooking and recipes.
 
@@ -7,6 +7,7 @@ A Python library for converting between units of measurement, particularly focus
 - Convert between common cooking measurements (volume, weight, temperature)
 - Natural language input for conversions (e.g., "2 cups to ml")
 - Recipe scaling utility to adjust ingredient quantities for different serving sizes
+- Type-safe with Pydantic models
 - Simple, intuitive API
 
 ## Installation
@@ -20,7 +21,7 @@ pip install -e .
 ### Basic unit conversion
 
 ```python
-from measure import convert
+from lethimcook import convert
 
 # Convert between units
 result = convert(2, "cups", "ml")
@@ -33,7 +34,7 @@ print(result)  # 176.67
 ### Natural language conversion
 
 ```python
-from measure import convert_natural
+from lethimcook import convert_natural
 
 # Use natural language for conversions
 result = convert_natural("2 cups to ml")
@@ -46,16 +47,16 @@ print(result)  # "1 pound = 453.59 grams"
 ### Recipe scaling
 
 ```python
-from measure import scale_recipe
+from lethimcook import Recipe, Ingredient, scale_recipe
 
-recipe = {
-    "servings": 4,
-    "ingredients": [
-        {"amount": 2, "unit": "cups", "name": "flour"},
-        {"amount": 1, "unit": "tsp", "name": "salt"},
-        {"amount": 3, "unit": "eggs", "name": "eggs"},
+recipe = Recipe(
+    servings=4,
+    ingredients=[
+        Ingredient(amount=2, unit="cups", name="flour"),
+        Ingredient(amount=1, unit="tsp", name="salt"),
+        Ingredient(amount=3, unit="whole", name="eggs"),
     ]
-}
+)
 
 scaled = scale_recipe(recipe, new_servings=8)
 # Doubles all ingredient amounts
